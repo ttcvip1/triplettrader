@@ -3,198 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signal Generator</title>
+    <title>Software Trial Ended</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
             text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 50px;
         }
-        .banner {
-            color: #d9534f;
-            font-size: 28px;
+        .message {
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            width: 80%;
-            max-width: 400px;
+        .link {
+            font-size: 20px;
+            color: #007BFF;
+            text-decoration: none;
         }
-        input, button, select {
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
-            width: 100%;
-        }
-        button {
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
-        .signals {
-            margin-top: 20px;
-            text-align: left;
-            font-size: 16px;
-        }
-        .hidden {
-            display: none;
+        .link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="banner">𒆜TRIPLE T TRADER 𒆜</div>
-
-    <div class="container">
-        <!-- Step 1: Select Asset -->
-        <div id="step1">
-            <label for="asset">Select Asset:</label>
-            <select id="asset" required>
-                <option value="" disabled selected>Select Asset</option>
-                <option value="AUDCAD_otc">AUD/CAD-OTC</option>
-                <option value="AUDCHF_otc">AUD/CHF-OTC</option>
-                <option value="AUDJPY_otc">AUD/JPY-OTC</option>
-                <option value="AUDNZD_otc">AUD/NZD-OTC</option>
-                <option value="AUDUSD_otc">AUD/USD-OTC</option>
-                <option value="CADCHF_otc">CAD/CHF-OTC</option>
-                <option value="CADJPY_otc">CAD/JPY-OTC</option>
-                <option value="CHFJPY_otc">CHF/JPY-OTC</option>
-                <option value="EURAUD_otc">EUR/AUD-OTC</option>
-                <option value="EURCAD_otc">EUR/CAD-OTC</option>
-                <option value="EURCHF_otc">EUR/CHF-OTC</option>
-                <option value="EURGBP_otc">EUR/GBP-OTC</option>
-                <option value="EURJPY_otc">EUR/JPY-OTC</option>
-                <option value="EURNZD_otc">EUR/NZD-OTC</option>
-                <option value="EURSGD_otc">EUR/SGD-OTC</option>
-                <option value="EURUSD_otc">EUR/USD-OTC</option>
-                <option value="GBPAUD_otc">GBP/AUD-OTC</option>
-                <option value="GBPCAD_otc">GBP/CAD-OTC</option>
-                <option value="GBPCHF_otc">GBP/CHF-OTC</option>
-                <option value="GBPJPY_otc">GBP/JPY-OTC</option>
-                <option value="GBPNZD_otc">GBP/NZD-OTC</option>
-                <option value="GBPUSD_otc">GBP/USD-OTC</option>
-                <option value="NZDCAD_otc">NZD/CAD-OTC</option>
-                <option value="NZDCHF_otc">NZD/CHF-OTC</option>
-                <option value="NZDJPY_otc">NZD/JPY-OTC</option>
-                <option value="NZDUSD_otc">NZD/USD-OTC</option>
-                <option value="USDBDT_otc">USD/BDT-OTC</option>
-                <option value="USDCAD_otc">USD/CAD-OTC</option>
-                <option value="USDCHF_otc">USD/CHF-OTC</option>
-                <option value="USDCOP_otc">USD/COP-OTC</option>
-                <option value="USDDZD_otc">USD/DZD-OTC</option>
-                <option value="USDEGP_otc">USD/EGP-OTC</option>
-                <option value="USDIDR_otc">USD/IDR-OTC</option>
-                <option value="USDINR_otc">USD/INR-OTC</option>
-                <option value="USDJPY_otc">USD/JPY-OTC</option>
-                <option value="USDMXN_otc">USD/MXN-OTC</option>
-                <option value="USDNGN_otc">USD/NGN-OTC</option>
-                <option value="USDPHP_otc">USD/PHP-OTC</option>
-                <option value="USDPKR_otc">USD/PKR-OTC</option>
-                <option value="USDTRY_otc">USD/TRY-OTC</option>
-                <option value="USDZAR_otc">USD/ZAR-OTC</option>
-            </select>
-            <button onclick="goToStep(2)">Next</button>
-        </div>
-
-        <!-- Step 2: Select Direction -->
-        <div id="step2" class="hidden">
-            <label for="direction">Enter direction (CALL/PUT):</label>
-            <select id="direction" required>
-                <option value="">Select Direction</option>
-                <option value="CALL">CALL</option>
-                <option value="PUT">PUT</option>
-            </select>
-            <button onclick="goToStep(3)">Next</button>
-        </div>
-
-        <!-- Step 3: Enter Start Time -->
-        <div id="step3" class="hidden">
-            <label for="start_time">Enter start time (HH:MM):</label>
-            <input type="time" id="start_time" required>
-            <button onclick="goToStep(4)">Next</button>
-        </div>
-
-        <!-- Step 4: Enter End Time -->
-        <div id="step4" class="hidden">
-            <label for="end_time">Enter end time (HH:MM):</label>
-            <input type="time" id="end_time" required>
-            <button onclick="generateSignals()">Generate Signals</button>
-        </div>
-
-        <!-- Output -->
-        <div class="signals hidden" id="signalOutput"></div>
+    <div class="message">
+        THE SOFTWARE TRIAL IS ENDED
     </div>
-
-    <script>
-        // Function to navigate between steps
-        function goToStep(step) {
-            document.getElementById("step1").classList.add("hidden");
-            document.getElementById("step2").classList.add("hidden");
-            document.getElementById("step3").classList.add("hidden");
-            document.getElementById("step4").classList.add("hidden");
-            document.getElementById(`step${step}`).classList.remove("hidden");
-        }
-
-        // Function to generate signals
-        function generateSignals() {
-            const asset = document.getElementById("asset").value;
-            const assetText = document.getElementById("asset").options[document.getElementById("asset").selectedIndex].text;
-            const direction = document.getElementById("direction").value;
-            const startTime = document.getElementById("start_time").value;
-            const endTime = document.getElementById("end_time").value;
-
-            if (!asset || !direction || !startTime || !endTime) {
-                alert("Please fill out all fields.");
-                return;
-            }
-
-            const start = new Date(`1970-01-01T${startTime}:00`);
-            const end = new Date(`1970-01-01T${endTime}:00`);
-
-            if (start >= end) {
-                alert("End time must be later than start time.");
-                return;
-            }
-
-            const signals = [];
-            const totalMinutes = (end - start) / 60000;
-            const hours = Math.floor(totalMinutes / 60);
-            const numSignals = Math.floor(Math.random() * (12 - 8 + 1) + 8) * (hours + 1);
-            let currentTime = start;
-
-            for (let i = 0; i < numSignals; i++) {
-                const interval = Math.floor(Math.random() * (7 - 4 + 1) + 4);
-                currentTime = new Date(currentTime.getTime() + interval * 60000);
-                if (currentTime >= end) break;
-                const timeString = currentTime.toTimeString().slice(0, 5);
-                signals.push(`${timeString} - ${assetText} - ${direction}`);
-            }
-
-            const output = document.getElementById("signalOutput");
-            const date = new Date();
-            const timezone = `UTC (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
-            const dateString = date.toLocaleDateString("en-GB");
-
-            output.innerHTML = `
-                <h3>𒆜TRIPLE T TRADER 𒆜</h3>
-                <p>⏰Timezone: ${timezone}</p>
-                <p>📅Date: ${dateString}</p>
-                <p>◻️AVOID IF OPPOSITE TREND, BACK 2 BACK 3 OPPOSITE CANDLE & PREVIOUS CANDLE DOJI OR GAPES</p>
-                <h3>SIGNALS:</h3>
-                <ul>${signals.map(s => `<li>${s}</li>`).join("")}</ul>`;
-            output.classList.remove("hidden");
-        }
-    </script>
+    <div>
+        BUY FROM: <a href="https://t.me/TTT_ADMIN_01" target="_blank" class="link">https://t.me/TTT_ADMIN_01</a>
+    </div>
 </body>
 </html>
